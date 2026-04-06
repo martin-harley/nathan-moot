@@ -9,8 +9,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'bou - Marketers, Designers, Writers & Developers',
-  description: 'We are marketers, designers, writers and developers. Shaped by tech.',
+  title: 'Nathan Moot - Aligning Appearance with Personality',
+  description: 'Align appearance with personality',
   generator: 'v0.app',
   icons: {
     icon: [
