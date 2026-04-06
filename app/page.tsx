@@ -34,7 +34,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center min-h-screen px-6 pb-40">
+      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-6">
         {/* Hero Text */}
         <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] text-center max-w-4xl leading-tight md:leading-tight lg:leading-tight text-foreground">
           <span className="font-normal">Aligning </span>
