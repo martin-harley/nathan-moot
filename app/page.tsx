@@ -25,8 +25,8 @@ export default function Home() {
 
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-12 py-6">
-        <Link href="/" className="text-2xl font-bold tracking-tight text-foreground">
-          bou
+        <Link href="/" className="text-3xl font-bold text-foreground" style={{ fontFamily: 'cursive' }}>
+          nm
         </Link>
         <button className="p-2 hover:opacity-70 transition-opacity" aria-label="Menu">
           <Plus className="w-6 h-6 text-foreground" strokeWidth={1.5} />
@@ -50,33 +50,32 @@ export default function Home() {
         {/* Navigation Links */}
         <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-12 md:mt-16">
           <Link 
-            href="/about" 
+            href="/mission" 
             className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
           >
-            About <ArrowRight className="w-4 h-4" />
+            Mission <ArrowRight className="w-4 h-4" />
           </Link>
           <Link 
-            href="/work" 
+            href="/me" 
             className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
           >
-            Our work <ArrowRight className="w-4 h-4" />
+            Me <ArrowRight className="w-4 h-4" />
           </Link>
           <Link 
-            href="/freelancer" 
+            href="/schedule" 
             className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
           >
-            Freelancer? <ArrowRight className="w-4 h-4" />
+            Schedule <ArrowRight className="w-4 h-4" />
           </Link>
         </nav>
       </main>
 
       {/* Bottom Section */}
       <section className="absolute bottom-0 left-0 right-0 flex items-end justify-between">
-        {/* Cases / Latest Work */}
+        {/* Services */}
         <div className="px-6 md:px-12 pb-8">
-          <span className="text-sm text-muted-foreground block mb-1">Cases</span>
           <button className="flex items-center gap-2 text-xl md:text-2xl font-medium text-foreground hover:opacity-70 transition-opacity">
-            Latest work <ArrowDown className="w-5 h-5" />
+            Services <ArrowDown className="w-5 h-5" />
           </button>
         </div>
 
