@@ -1,6 +1,5 @@
 import { ArrowRight, ArrowDown, Plus } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 
 export default function Home() {
   return (
@@ -26,14 +25,8 @@ export default function Home() {
 
       {/* Header */}
       <header className="flex items-center justify-between px-6 md:px-12 py-6">
-        <Link href="/" className="h-48 w-auto">
-          <Image 
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/craiyon_090523_image-KZZmYcdLgQdsRRsMsHynyj3VHeWnTK.png"
-            alt="Nathan Moot"
-            width={800}
-            height={200}
-            className="h-48 w-auto object-contain"
-          />
+        <Link href="/" className="text-3xl font-bold text-foreground" style={{ fontFamily: 'cursive' }}>
+          nm
         </Link>
         <button className="p-2 hover:opacity-70 transition-opacity" aria-label="Menu">
           <Plus className="w-6 h-6 text-foreground" strokeWidth={1.5} />
