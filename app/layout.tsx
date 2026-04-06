@@ -11,7 +11,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Nathan Moot - Aligning Appearance with Personality',
   description: 'Align appearance with personality',
-  generator: 'v0.app',
+  generator: 'Harley & Co.',
   icons: {
     icon: [
       {

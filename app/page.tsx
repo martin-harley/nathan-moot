@@ -1,7 +1,14 @@
+"use client"
+
+import { useState } from "react"
 import { ArrowRight, ArrowDown, Plus } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Gradient Background */}
@@ -19,7 +26,7 @@ export default function Home() {
       />
 
       {/* Header */}
-      <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-none">
+      <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-none">
         <Link href="/" className="pointer-events-auto pt-2">
           <img 
             src="/logo.png" 
@@ -27,9 +34,50 @@ export default function Home() {
             className="h-8 w-auto md:h-12" 
           />
         </Link>
-        <button className="p-2 hover:opacity-70 transition-opacity pointer-events-auto" aria-label="Menu">
-          <Plus className="w-6 h-6 text-foreground" strokeWidth={1.5} />
-        </button>
+        <div className="relative pointer-events-auto flex flex-col items-center">
+          <button 
+            className="p-2 transition-all duration-300 cursor-pointer" 
+            aria-label="Menu"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <Plus 
+              className={cn(
+                "w-6 h-6 text-foreground transition-all duration-300 ease-out transform-gpu",
+                isOpen && "rotate-45"
+              )} 
+              strokeWidth={isHovered ? 3 : 1.5} 
+            />
+          </button>
+
+          {/* Glassmorphic Dropdown */}
+          <div 
+            className={cn(
+              "absolute top-[calc(100%+1rem)] right-0 min-w-[200px] overflow-hidden transition-all duration-500 ease-out origin-top",
+              "bg-white/10 backdrop-blur-2xl border border-white/20 rounded-[2rem] shadow-2xl z-40",
+              isOpen ? "max-h-[1000px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0"
+            )}
+          >
+            <nav className="flex flex-col p-6 gap-2">
+              {['Services', 'Contact', 'About', 'FAQ'].map((item, index) => (
+                <Link 
+                  key={item}
+                  href={`/${item.toLowerCase()}`}
+                  className="group flex items-center justify-between px-4 py-3 text-lg font-medium text-foreground hover:bg-white/20 rounded-2xl transition-all duration-300"
+                  style={{ 
+                    transitionDelay: isOpen ? `${index * 50}ms` : '0ms',
+                    opacity: isOpen ? 1 : 0,
+                    transform: isOpen ? 'translateY(0)' : 'translateY(-10px)'
+                  }}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </div>
       </header>
 
       {/* Main Content */}
@@ -77,8 +125,8 @@ export default function Home() {
             </div>
           </button>
         </div>
-
       </section>
     </div>
   )
 }
+
