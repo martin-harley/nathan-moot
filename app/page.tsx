@@ -37,9 +37,9 @@ export default function Home() {
         {/* Hero Text */}
         <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] text-center max-w-4xl leading-tight md:leading-tight lg:leading-tight text-foreground">
           <span className="font-normal">Aligning </span>
-          <span className="font-bold" style={{ color: '#001a4d' }}>appearance</span>
+          <span className="font-bold" style={{ color: '#142139' }}>appearance</span>
           <span className="font-normal"> with </span>
-          <span className="font-bold" style={{ color: '#8b0000' }}>personality</span>
+          <span className="font-bold" style={{ color: '#850b17' }}>personality</span>
           <span className="font-normal">.</span>
         </h1>
 
@@ -47,19 +47,19 @@ export default function Home() {
         <nav className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-12 md:mt-16">
           <Link 
             href="/mission" 
-            className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
+            className="flex items-center gap-2 text-base md:text-lg font-medium text-foreground hover:opacity-70 transition-opacity"
           >
             Mission <ArrowRight className="w-4 h-4" />
           </Link>
           <Link 
             href="/me" 
-            className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
+            className="flex items-center gap-2 text-base md:text-lg font-medium text-foreground hover:opacity-70 transition-opacity"
           >
             Me <ArrowRight className="w-4 h-4" />
           </Link>
           <Link 
             href="/schedule" 
-            className="flex items-center gap-2 text-base md:text-lg text-foreground hover:opacity-70 transition-opacity"
+            className="flex items-center gap-2 text-base md:text-lg font-medium text-foreground hover:opacity-70 transition-opacity"
           >
             Schedule <ArrowRight className="w-4 h-4" />
           </Link>
@@ -70,20 +70,14 @@ export default function Home() {
       <section className="absolute bottom-0 left-0 right-0 flex items-end justify-between">
         {/* Services */}
         <div className="px-6 md:px-12 pb-8">
-          <button className="flex items-center gap-2 text-xl md:text-2xl font-medium text-foreground hover:opacity-70 transition-opacity">
-            Services <ArrowDown className="w-5 h-5" />
+          <button className="flex flex-col items-start text-left group">
+            <span className="text-base md:text-lg text-muted-foreground mb-1">Explore</span>
+            <div className="flex items-center gap-4 text-3xl md:text-5xl font-normal text-foreground group-hover:opacity-70 transition-opacity">
+              Services <ArrowDown className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
+            </div>
           </button>
         </div>
 
-        {/* All Work Button */}
-        <div className="px-6 md:px-12 pb-8">
-          <Link 
-            href="/all-work"
-            className="flex items-center gap-2 text-xl md:text-2xl font-medium text-foreground hover:opacity-70 transition-opacity"
-          >
-            All work <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
       </section>
     </div>
   )
