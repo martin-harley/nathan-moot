@@ -9,32 +9,31 @@ export default function Home() {
         className="absolute inset-0 -z-10"
         style={{
           background: `
-            linear-gradient(180deg, 
-              rgba(200, 255, 255, 0.4) 0%, 
-              rgba(255, 255, 255, 0.3) 30%,
-              rgba(255, 220, 240, 0.3) 70%,
-              rgba(255, 240, 220, 0.3) 100%
-            ),
-            radial-gradient(ellipse at 20% 80%, rgba(255, 200, 220, 0.4) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 90%, rgba(255, 250, 220, 0.5) 0%, transparent 40%),
-            radial-gradient(ellipse at 50% 0%, rgba(180, 240, 255, 0.5) 0%, transparent 50%)
+            radial-gradient(circle at 25% 25%, rgba(106,166,216,0.5), transparent 50%),
+            radial-gradient(circle at 75% 25%, rgba(133,11,23,0.4), transparent 55%),
+            radial-gradient(circle at 50% 75%, rgba(20,33,57,0.5), transparent 60%),
+            linear-gradient(180deg, #fcf2d9 0%, #ffffff 100%)
           `,
-          backgroundColor: '#f0fdff'
+          backgroundColor: '#fcf2d9'
         }}
       />
 
       {/* Header */}
-      <header className="flex items-center justify-between px-6 md:px-12 py-6">
-        <Link href="/" className="text-3xl font-bold text-foreground" style={{ fontFamily: 'cursive' }}>
-          nm
+      <header className="absolute top-0 left-0 right-0 z-10 flex items-center justify-between px-6 md:px-12 py-6 pointer-events-none">
+        <Link href="/" className="pointer-events-auto pt-2">
+          <img 
+            src="/logo.png" 
+            alt="Nathan Moot" 
+            className="h-8 w-auto md:h-12" 
+          />
         </Link>
-        <button className="p-2 hover:opacity-70 transition-opacity" aria-label="Menu">
+        <button className="p-2 hover:opacity-70 transition-opacity pointer-events-auto" aria-label="Menu">
           <Plus className="w-6 h-6 text-foreground" strokeWidth={1.5} />
         </button>
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-col items-center justify-center min-h-[calc(100vh-120px)] px-6">
+      <main className="flex flex-col items-center justify-center min-h-screen px-6">
         {/* Hero Text */}
         <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] text-center max-w-4xl leading-tight md:leading-tight lg:leading-tight text-foreground">
           <span className="font-normal">Aligning </span>
@@ -77,15 +76,14 @@ export default function Home() {
         </div>
 
         {/* All Work Button */}
-        <Link 
-          href="/all-work"
-          className="flex items-center gap-2 px-12 md:px-20 py-6 md:py-8 text-lg md:text-xl text-foreground hover:opacity-80 transition-opacity"
-          style={{
-            background: 'linear-gradient(135deg, rgba(255, 255, 240, 0.9) 0%, rgba(255, 250, 230, 0.95) 100%)'
-          }}
-        >
-          All work <ArrowRight className="w-5 h-5" />
-        </Link>
+        <div className="px-6 md:px-12 pb-8">
+          <Link 
+            href="/all-work"
+            className="flex items-center gap-2 text-xl md:text-2xl font-medium text-foreground hover:opacity-70 transition-opacity"
+          >
+            All work <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
       </section>
     </div>
   )
