@@ -1,27 +1,115 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ArrowRight, ArrowDown, Plus } from "lucide-react"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+const services = [
+  {
+    title: "Branding & Identity",
+    description: "Aligning your appearance with your core personality. We create visual systems that communicate your values at a glance, ensuring your brand is both memorable and authentic.",
+    tags: ["Strategy", "Visual Identity", "Tone of Voice"],
+    image: "/branding.png",
+    link: "/mission"
+  },
+  {
+    title: "Web & Digital Design",
+    description: "Premium digital experiences built for impact. We focus on high-end aesthetics and seamless usability, making sure your digital presence is as polished as your brand.",
+    tags: ["UI/UX Design", "Development", "Motion"],
+    image: "/web.png",
+    link: "/mission"
+  },
+  {
+    title: "Digital Strategy",
+    description: "Data-informed roadmaps that drive growth. We help you navigate the complex digital landscape with a clear plan to scale and reach your audience effectively.",
+    tags: ["Market Analysis", "SEO", "Consulting"],
+    image: "/strategy.png",
+    link: "/mission"
+  }
+]
+
+function CaseStudyFrame({ title, description, tags, image, link, reverse = false }: any) {
+  return (
+    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 py-20 relative">
+      <div className={cn(
+        "max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 md:gap-24",
+        reverse && "md:flex-row-reverse"
+      )}>
+        {/* Text Content */}
+        <div className="flex-1 space-y-6 md:space-y-8">
+          <div className="space-y-2">
+             <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal text-foreground tracking-tight leading-tight">
+               {title}
+             </h2>
+          </div>
+          
+          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-xl">
+            {description}
+          </p>
+          
+          <div className="flex flex-wrap gap-3">
+            {tags.map((tag: any) => (
+              <span key={tag} className="text-sm font-medium text-foreground/60 border border-foreground/10 px-3 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+          
+          <Link 
+            href={link}
+            className="inline-flex items-center gap-2 text-lg md:text-xl font-medium text-foreground hover:opacity-70 transition-all group"
+          >
+            View case <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
+        
+        {/* Image / Visual */}
+        <div className="flex-1 w-full relative group">
+          <div className="aspect-[16/9] md:aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl saturate-110 brightness-105 transition-transform duration-700 group-hover:scale-[1.02]">
+            <img src={image} alt={title} className="w-full h-full object-cover" />
+          </div>
+          {/* Decorative glass elements */}
+          <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-32 md:w-48 h-32 md:h-48 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full -z-10 animate-pulse" />
+          <div className="absolute -top-10 -left-10 w-24 h-24 bg-red-400/10 backdrop-blur-3xl rounded-full -z-10" />
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      // Calculate mouse position as percentage of window
+      setMousePosition({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
+    <div className="min-h-screen relative">
       {/* Gradient Background */}
       <div 
-        className="absolute inset-0 -z-10"
+        className="fixed inset-0 -z-10 transition-transform duration-700 ease-out"
         style={{
           background: `
-            radial-gradient(circle at 25% 25%, rgba(106,166,216,0.5), transparent 50%),
-            radial-gradient(circle at 75% 25%, rgba(133,11,23,0.4), transparent 55%),
-            radial-gradient(circle at 50% 75%, rgba(20,33,57,0.5), transparent 60%),
+            radial-gradient(circle at ${25 + (mousePosition.x - 50) * 0.2}vw ${25 + (mousePosition.y - 50) * 0.2}vh, rgba(106,166,216,0.7) 0%, transparent 70%),
+            radial-gradient(circle at ${75 + (mousePosition.x - 50) * -0.1}vw ${35 + (mousePosition.y - 50) * -0.1}vh, rgba(133,11,23,0.5) 0%, transparent 75%),
+            radial-gradient(circle at ${50 + (mousePosition.x - 50) * 0.1}vw ${75 + (mousePosition.y - 50) * 0.1}vh, rgba(20,33,57,0.7) 0%, transparent 80%),
             linear-gradient(180deg, #fcf2d9 0%, #ffffff 100%)
           `,
-          backgroundColor: '#fcf2d9'
+          width: '100%',
+          height: '100%'
         }}
       />
 
@@ -80,8 +168,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="flex flex-col items-center justify-center min-h-screen px-6">
+      <main className="relative flex flex-col items-center justify-center min-h-screen px-6">
         {/* Hero Text */}
         <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] text-center max-w-4xl leading-tight md:leading-tight lg:leading-tight text-foreground">
           <span className="font-normal">Aligning </span>
@@ -112,20 +199,44 @@ export default function Home() {
             Schedule <ArrowRight className="w-4 h-4" />
           </Link>
         </nav>
+
+        {/* Bottom Section (pushed up on scroll) */}
+        <section className="absolute bottom-0 left-0 right-0 flex items-end justify-between pointer-events-none z-20">
+          <div className="px-6 md:px-12 pb-8 pointer-events-auto">
+            <button 
+              className={cn(
+                "flex flex-col items-start text-left group transition-all duration-500",
+                isOpen && "opacity-0 translate-y-4 pointer-events-none"
+              )}
+              onClick={() => {
+                const servicesEl = document.getElementById('services-start');
+                if (servicesEl) {
+                  servicesEl.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              <span className="text-base md:text-lg text-muted-foreground mb-1">Explore</span>
+              <div className="flex items-center gap-4 text-2xl md:text-4xl font-normal text-foreground group-hover:opacity-70 transition-opacity">
+                Services <ArrowDown className="w-6 h-6 md:w-8 md:h-8" strokeWidth={1.5} />
+              </div>
+            </button>
+          </div>
+        </section>
       </main>
 
-      {/* Bottom Section */}
-      <section className="absolute bottom-0 left-0 right-0 flex items-end justify-between">
-        {/* Services */}
-        <div className="px-6 md:px-12 pb-8">
-          <button className="flex flex-col items-start text-left group">
-            <span className="text-base md:text-lg text-muted-foreground mb-1">Explore</span>
-            <div className="flex items-center gap-4 text-3xl md:text-5xl font-normal text-foreground group-hover:opacity-70 transition-opacity">
-              Services <ArrowDown className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />
-            </div>
-          </button>
-        </div>
-      </section>
+      {/* Service Frames */}
+      <div className="relative z-10 space-y-20 pb-32">
+        {services.map((service, index) => (
+          <CaseStudyFrame 
+            key={service.title} 
+            {...service} 
+            reverse={index % 2 !== 0}
+          />
+        ))}
+      </div>
+      
+      {/* Scroll anchor */}
+      <div id="services-start" className="absolute top-screen pointer-events-none" />
     </div>
   )
 }
