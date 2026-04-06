@@ -37,14 +37,11 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center px-6 pt-24 md:pt-32 pb-40">
         {/* Hero Text */}
         <h1 className="text-3xl md:text-5xl lg:text-[3.5rem] text-center max-w-4xl leading-tight md:leading-tight lg:leading-tight text-foreground">
-          <span className="font-normal">Call it like it is. We are </span>
-          <span className="font-bold">marketers,</span>
-          <br className="hidden md:block" />
-          <span className="font-bold"> designers, writers </span>
-          <span className="font-normal"> and </span>
-          <span className="font-bold">developers.</span>
-          <br />
-          <span className="font-normal">Shaped by tech.</span>
+          <span className="font-normal">Aligning </span>
+          <span className="font-bold" style={{ color: '#001a4d' }}>appearance</span>
+          <span className="font-normal"> with </span>
+          <span className="font-bold" style={{ color: '#8b0000' }}>personality</span>
+          <span className="font-normal">.</span>
         </h1>
 
         {/* Navigation Links */}
