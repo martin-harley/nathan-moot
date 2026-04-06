@@ -97,15 +97,15 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative isolate">
       {/* Gradient Background */}
       <div 
         className="fixed inset-0 -z-10 transition-transform duration-700 ease-out"
         style={{
-          background: `
-            radial-gradient(circle at ${25 + (mousePosition.x - 50) * 0.2}vw ${25 + (mousePosition.y - 50) * 0.2}vh, rgba(106,166,216,0.7) 0%, transparent 70%),
-            radial-gradient(circle at ${75 + (mousePosition.x - 50) * -0.1}vw ${35 + (mousePosition.y - 50) * -0.1}vh, rgba(133,11,23,0.5) 0%, transparent 75%),
-            radial-gradient(circle at ${50 + (mousePosition.x - 50) * 0.1}vw ${75 + (mousePosition.y - 50) * 0.1}vh, rgba(20,33,57,0.7) 0%, transparent 80%),
+          backgroundImage: `
+            radial-gradient(circle at ${25 + (mousePosition.x - 50) * 0.2}vw ${25 + (mousePosition.y - 50) * 0.2}vh, rgba(106,166,216,0.7) 0%, rgba(106,166,216,0) 70%),
+            radial-gradient(circle at ${75 + (mousePosition.x - 50) * -0.1}vw ${35 + (mousePosition.y - 50) * -0.1}vh, rgba(133,11,23,0.5) 0%, rgba(133,11,23,0) 75%),
+            radial-gradient(circle at ${50 + (mousePosition.x - 50) * 0.1}vw ${75 + (mousePosition.y - 50) * 0.1}vh, rgba(20,33,57,0.7) 0%, rgba(20,33,57,0) 80%),
             linear-gradient(180deg, #fcf2d9 0%, #ffffff 100%)
           `,
           width: '100%',
