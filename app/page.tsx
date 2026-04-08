@@ -7,63 +7,61 @@ import { cn } from "@/lib/utils"
 
 const services = [
   {
-    title: "Branding & Identity",
-    description: "Aligning your appearance with your core personality. We create visual systems that communicate your values at a glance, ensuring your brand is both memorable and authentic.",
+    title: "Style Therapy",
+    description: "What are your style, wardrobe and overall goals? Answer a set of questions for tailored solutions to your personal needs via call, message, or completing your Profile. After each session, you will receive a personalized guide that connects your personality and appearance.",
     tags: ["Strategy", "Visual Identity", "Tone of Voice"],
-    image: "/branding.png",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&fit=crop&q=80",
     link: "/mission"
   },
   {
-    title: "Web & Digital Design",
-    description: "Premium digital experiences built for impact. We focus on high-end aesthetics and seamless usability, making sure your digital presence is as polished as your brand.",
+    title: "Shopping",
+    description: "Let me do the work for you! Receive personally sourced pieces, handpicked for your lifestyle. Your newest productivity hack!",
     tags: ["UI/UX Design", "Development", "Motion"],
-    image: "/web.png",
-    link: "/mission"
+    image: "https://images.unsplash.com/photo-1617137968427-85924c800a22?w=1200&fit=crop&q=80",
+    link: "/mission",
+    bgColor: "#850b17",
+    textColor: "#6aa6d8"
   },
-  {
-    title: "Digital Strategy",
-    description: "Data-informed roadmaps that drive growth. We help you navigate the complex digital landscape with a clear plan to scale and reach your audience effectively.",
-    tags: ["Market Analysis", "SEO", "Consulting"],
-    image: "/strategy.png",
-    link: "/mission"
-  }
 ]
 
-function CaseStudyFrame({ title, description, tags, image, link, reverse = false }: any) {
+function CaseStudyFrame({ title, description, image, link, reverse = false, index = 0, textColor }: any) {
+  const radialX = index % 2 === 0 ? '25%' : '75%'
+  const text = textColor ?? '#850b17'
+  const textMuted = textColor
+    ? `${textColor}cc`
+    : 'rgba(133,11,23,0.82)'
   return (
-    <section className="min-h-screen flex flex-col justify-center px-6 md:px-12 py-20 relative">
+    <section
+      className="min-h-screen flex flex-col justify-center px-6 md:px-12 py-20 relative"
+      style={{
+        background: `radial-gradient(ellipse at ${radialX} 50%, rgba(255,255,255,0.08) 0%, transparent 55%)`
+      }}
+    >
       <div className={cn(
         "max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 md:gap-24",
         reverse && "md:flex-row-reverse"
       )}>
         {/* Text Content */}
-        <div className="flex-1 space-y-6 md:space-y-8">
+        <div className="flex-1 space-y-6 md:space-y-8" style={{ color: text }}>
           <div className="space-y-2">
-             <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal text-foreground tracking-tight leading-tight">
+             <h2 className="text-4xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-tight">
                {title}
              </h2>
           </div>
-          
-          <p className="text-lg md:text-xl text-foreground/80 leading-relaxed max-w-xl">
+
+          <p className="text-lg md:text-xl leading-relaxed max-w-xl" style={{ color: textMuted }}>
             {description}
           </p>
-          
-          <div className="flex flex-wrap gap-3">
-            {tags.map((tag: any) => (
-              <span key={tag} className="text-sm font-medium text-foreground/60 border border-foreground/10 px-3 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-          
-          <Link 
+
+          <Link
             href={link}
-            className="inline-flex items-center gap-2 text-lg md:text-xl font-medium text-foreground hover:opacity-70 transition-all group"
+            className="inline-flex items-center gap-2 text-lg md:text-xl font-medium hover:opacity-70 transition-all group"
+            style={{ color: text }}
           >
-            View case <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            Explore <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
-        
+
         {/* Image / Visual */}
         <div className="flex-1 w-full relative group">
           <div className="aspect-[16/9] md:aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-2xl saturate-110 brightness-105 transition-transform duration-700 group-hover:scale-[1.02]">
@@ -71,7 +69,7 @@ function CaseStudyFrame({ title, description, tags, image, link, reverse = false
           </div>
           {/* Decorative glass elements */}
           <div className="absolute -bottom-6 -right-6 md:-bottom-10 md:-right-10 w-32 md:w-48 h-32 md:h-48 bg-white/10 backdrop-blur-3xl border border-white/20 rounded-full -z-10 animate-pulse" />
-          <div className="absolute -top-10 -left-10 w-24 h-24 bg-red-400/10 backdrop-blur-3xl rounded-full -z-10" />
+          <div className="absolute -top-10 -left-10 w-24 h-24 backdrop-blur-3xl rounded-full -z-10" style={{ background: 'rgba(133,11,23,0.07)' }} />
         </div>
       </div>
     </section>
@@ -196,7 +194,7 @@ export default function Home() {
             href="/schedule" 
             className="flex items-center gap-2 text-base md:text-lg font-medium text-foreground hover:opacity-70 transition-opacity"
           >
-            Schedule <ArrowRight className="w-4 h-4" />
+            Book Now <ArrowRight className="w-4 h-4" />
           </Link>
         </nav>
 
@@ -211,7 +209,7 @@ export default function Home() {
               onClick={() => {
                 const servicesEl = document.getElementById('services-start');
                 if (servicesEl) {
-                  servicesEl.scrollIntoView({ behavior: 'smooth' });
+                  window.scrollTo({ top: servicesEl.offsetTop, behavior: 'smooth' });
                 }
               }}
             >
@@ -225,18 +223,23 @@ export default function Home() {
       </main>
 
       {/* Service Frames */}
-      <div className="relative z-10 space-y-20 pb-32">
+      {/* Single gradient covers all service frames so transitions are seamless */}
+      <div
+        id="services-start"
+        className="relative z-10 pb-32"
+        style={{
+          background: 'linear-gradient(to bottom, transparent 0%, #6aa6d8 10%, #6aa6d8 42%, #850b17 58%, #850b17 100%)'
+        }}
+      >
         {services.map((service, index) => (
-          <CaseStudyFrame 
-            key={service.title} 
-            {...service} 
+          <CaseStudyFrame
+            key={service.title}
+            {...service}
+            index={index}
             reverse={index % 2 !== 0}
           />
         ))}
       </div>
-      
-      {/* Scroll anchor */}
-      <div id="services-start" className="absolute top-screen pointer-events-none" />
     </div>
   )
 }
